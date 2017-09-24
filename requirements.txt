@@ -1,0 +1,30 @@
+Functional Requirements:
+A user shall be able to create and manage their account.
+A user shall be able to recover their username.
+A user shall be able to reset their password.
+
+A user shall be able to search for a book.
+A user shall be able to add and move a book to their “currently reading”, “read” and “want to read” lists.
+A user shall be able to give a “read” book a rating.
+A user shall be able to attach notes to books in their lists.
+A user shall receive new publication notices relevant to them based on subscriptions.
+A user shall receive book recommendations relevant to them.
+
+A user has the ability to create and manage a “book club”.
+A user shall be able to subscribe to notifications for “book clubs” they are members of.
+A user shall be able to add other users as friends.
+A user shall be able to view their friend’s profiles.
+A user shall be able to subscribe to notification activity of their friends.
+
+Non-Functional Requirements:
+The front end client shall be written using C# on a windows platform, the back end in Go on a linux platform, and the backend database in PostgreSQL.
+The application shall be limited to 50 user accounts.
+A user shall be limited to a total of 500 MB of notes.
+A user shall not be able to edit the accounts of other users.
+
+Key
+Book club - Forum to discuss books with other users.
+Currently reading - The book(s) that a user are actively reading.
+Read - The book(s) that a user has finished reading.
+Want to read - The book(s) that a user wants to read in the future.
+Profile - Content space consisting of username and full book lists.
