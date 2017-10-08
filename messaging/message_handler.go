@@ -4,6 +4,8 @@ import (
     "fmt"
     "github.com/mortonar/acs560_course_project/messaging/messages/request"
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
+    "github.com/mortonar/acs560_course_project/messaging/handlers"
+    "encoding/json"
 )
 
 type MessageHandler struct {
@@ -29,10 +31,13 @@ func (handler *MessageHandler) process() {
         message := <-handler.requestChan
         fmt.Println("MessageHandler::gotMessage ->")
         fmt.Println(message)
-        // switch message.Action {
-         // process
-         // ...
-        // }
+        switch message.Action {
+        case "Auth":
+            bytes, _ := json.Marshal(message.Payload) // TODO error handling
+            var authReq = request.AuthRequest{}
+            _ = json.Unmarshal(bytes, authReq)
+            handlers.HandleLogin(authReq)
+        }
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }
 }
