@@ -33,9 +33,17 @@ func (handler *MessageHandler) process() {
         fmt.Println(message)
         switch message.Action {
         case "Auth":
-            bytes, _ := json.Marshal(message.Payload) // TODO error handling
+            bytes, err := json.Marshal(message.Payload) // TODO actual error handling
+            if err != nil {
+                fmt.Println("Marshal ERROR: ", err)
+            }
+            decoded := string(bytes)
+            fmt.Printf("DECODED: %+v (%T)\n", decoded)
             var authReq = request.AuthRequest{}
-            _ = json.Unmarshal(bytes, authReq)
+            err = json.Unmarshal(bytes, &authReq)
+            if err != nil {
+                fmt.Println("UnMarshal ERROR: ", err)
+            }
             handlers.HandleLogin(authReq)
         }
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}

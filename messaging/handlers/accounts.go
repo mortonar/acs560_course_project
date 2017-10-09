@@ -6,7 +6,7 @@ import (
 )
 
 func HandleLogin(request request.AuthRequest) {
-    fmt.Println("Login message: {}", request)
+    fmt.Println("Login message: ", request)
     fmt.Println("Logging in...")
     fmt.Println("Logged in...")
 }
