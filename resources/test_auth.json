@@ -1,0 +1,8 @@
+{
+    "token": "asdf",
+    "action": "Auth",
+    "payload": {
+        "UserName": "guy",
+        "EncryptedPass": "asdfasdf"
+    }
+}
