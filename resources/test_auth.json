@@ -1,8 +1,8 @@
 {
-    "token": "asdf",
+    "token": "abcd",
     "action": "Auth",
     "payload": {
-        "UserName": "guy",
-        "EncryptedPass": "asdfasdf"
+        "UserName": "mortona",
+        "EncryptedPass": "changeme"
     }
 }
