@@ -20,6 +20,10 @@ func NewDBProxy() *DBProxy {
     return dbp
 }
 
+func (db *DBProxy) GetConnection() *gorm.DB {
+    return db.db
+}
+
 func (dbp *DBProxy) migrate() {
     dbp.db.AutoMigrate(&models.Book{})
     dbp.db.AutoMigrate(&models.Shelf{})

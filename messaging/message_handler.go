@@ -5,16 +5,17 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/messages/request"
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
     "github.com/mortonar/acs560_course_project/messaging/handlers"
-    "encoding/json"
+    "github.com/mortonar/acs560_course_project/database"
 )
 
 type MessageHandler struct {
     requestChan <-chan request.Base
     responseChan chan<- response.Base
+    dbProxy *database.DBProxy
 }
 
 func NewMessageHandler(requestChan <-chan request.Base, responseChan chan<- response.Base) *MessageHandler {
-    mh := &MessageHandler{requestChan, responseChan}
+    mh := &MessageHandler{requestChan, responseChan, database.NewDBProxy()}
     return mh
 }
 
@@ -29,22 +30,23 @@ func (handler *MessageHandler) Stop() {
 func (handler *MessageHandler) process() {
     for {
         message := <-handler.requestChan
-        fmt.Println("MessageHandler::gotMessage ->")
-        fmt.Println(message)
+        fmt.Println("MessageHandler::gotMessage ->\n%v", message)
         switch message.Action {
         case "Auth":
-            bytes, err := json.Marshal(message.Payload) // TODO actual error handling
-            if err != nil {
-                fmt.Println("Marshal ERROR: ", err)
-            }
-            decoded := string(bytes)
-            fmt.Printf("DECODED: %+v (%T)\n", decoded)
             var authReq = request.AuthRequest{}
-            err = json.Unmarshal(bytes, &authReq)
-            if err != nil {
-                fmt.Println("UnMarshal ERROR: ", err)
+            error := ParseMessage(message, &authReq)
+            if error == nil {
+                handlers.HandleLogin(authReq)
             }
-            handlers.HandleLogin(authReq)
+        case "CreateAccount":
+            fmt.Println("Creating account...")
+            var createReq = request.CreateAccount{}
+            error := ParseMessage(message, &createReq)
+            if error == nil {
+                handlers.HandleCreateAccount(createReq, handler.dbProxy.GetConnection())
+            } else {
+                fmt.Println("Error: ", error)
+            }
         }
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }
