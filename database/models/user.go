@@ -8,4 +8,5 @@ type User struct {
     Email string `gorm:"primary_key"`
     Password string
     Shelves []Shelf
+    Session Session
 }

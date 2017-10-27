@@ -1,0 +1,10 @@
+{
+  "Token": "",
+  "Action": "CreateAccount",
+  "Payload":
+  {
+    "UserName": "mortona",
+    "Email": "mortonar01@gmail.com",
+    "Password": "changeme"
+  }
+}

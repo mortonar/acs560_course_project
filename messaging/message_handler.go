@@ -6,16 +6,18 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
     "github.com/mortonar/acs560_course_project/messaging/handlers"
     "github.com/mortonar/acs560_course_project/database"
+    "github.com/mortonar/acs560_course_project/database/models"
 )
 
 type MessageHandler struct {
     requestChan <-chan request.Base
     responseChan chan<- response.Base
     dbProxy *database.DBProxy
+    session *models.Session
 }
 
 func NewMessageHandler(requestChan <-chan request.Base, responseChan chan<- response.Base) *MessageHandler {
-    mh := &MessageHandler{requestChan, responseChan, database.NewDBProxy()}
+    mh := &MessageHandler{requestChan, responseChan, database.NewDBProxy(), nil}
     return mh
 }
 
@@ -32,12 +34,6 @@ func (handler *MessageHandler) process() {
         message := <-handler.requestChan
         fmt.Println("MessageHandler::gotMessage ->\n%v", message)
         switch message.Action {
-        case "Auth":
-            var authReq = request.AuthRequest{}
-            error := ParseMessage(message, &authReq)
-            if error == nil {
-                handlers.HandleLogin(authReq)
-            }
         case "CreateAccount":
             fmt.Println("Creating account...")
             var createReq = request.CreateAccount{}
@@ -47,6 +43,19 @@ func (handler *MessageHandler) process() {
             } else {
                 fmt.Println("Error: ", error)
             }
+        case "Auth":
+            var authReq = request.AuthRequest{}
+            error := ParseMessage(message, &authReq)
+            if error == nil {
+                session, err := handlers.HandleLogin(authReq, handler.dbProxy.GetConnection())
+                if err == nil {
+                    handler.session = session
+                } else {
+                    fmt.Println(err)
+                }
+
+            }
+        // TODO ensure session exists before allowing other actions
         }
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }
