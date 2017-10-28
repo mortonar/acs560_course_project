@@ -45,6 +45,15 @@ func (handler *MessageHandler) process() {
                 fmt.Println("UnMarshal ERROR: ", err)
             }
             handlers.HandleLogin(authReq)
+	    case "Search":
+            bytes, err := json.Marshal(message.Payload) // TODO actual error handling
+            if err != nil {
+                fmt.Println("Marshal ERROR: ", err)
+            }
+            decoded := string(bytes)
+            fmt.Printf("DECODED: %+v (%T)\n", decoded)
+			
+			// TODO - perform search and  format and send back response
         }
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }

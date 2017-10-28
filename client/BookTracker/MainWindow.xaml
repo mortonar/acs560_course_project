@@ -51,6 +51,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">BookTracker</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
+                <Button Content="Button" Width="101" Height="23" Click="Button_Click"/>
             </DockPanel>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
