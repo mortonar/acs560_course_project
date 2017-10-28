@@ -27,7 +27,7 @@ namespace BookTracker
             NetworkStream serverStream = clientSocket.GetStream();
 
             // TODO - implement request based off actual values
-            string request = "{\"token\": \"asdf\",\"action\": \"Search\",\"payload\": {\"bookName\": \"Dying of the light\"}}";
+            string request = "{\"token\": \"asdf\",\"action\": \"Search\",\"payload\": {\"bookName\": \"Dying of the light\", \"authorName\": \"George R.R. Martin\"}}";
 
             byte[] outStream = Encoding.ASCII.GetBytes(request);
             serverStream.Write(outStream, 0, outStream.Length);

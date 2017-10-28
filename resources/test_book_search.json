@@ -1,0 +1,8 @@
+{
+    "token": "",
+    "action": "Search",
+    "payload": {
+        "BookName": "Dying of the light",
+        "AuthorName": "George R.R. Martin"
+    }
+}
