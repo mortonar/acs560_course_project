@@ -7,6 +7,7 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/handlers"
     "github.com/mortonar/acs560_course_project/database"
     "github.com/mortonar/acs560_course_project/database/models"
+    "encoding/json"
 )
 
 type MessageHandler struct {
@@ -55,7 +56,6 @@ func (handler *MessageHandler) process() {
                 }
 
             }
-            handlers.HandleLogin(authReq)
 	    case "Search":
             bytes, err := json.Marshal(message.Payload) // TODO actual error handling
             if err != nil {
