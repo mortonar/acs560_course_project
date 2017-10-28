@@ -17,11 +17,22 @@ func NewDBProxy() *DBProxy {
     }
     dbp := &DBProxy{db}
     dbp.migrate()
+    dbp.clearSessions()
     return dbp
+}
+
+func (db *DBProxy) GetConnection() *gorm.DB {
+    return db.db
 }
 
 func (dbp *DBProxy) migrate() {
     dbp.db.AutoMigrate(&models.Book{})
+    dbp.db.AutoMigrate(&models.Reading{})
+    dbp.db.AutoMigrate(&models.Session{})
     dbp.db.AutoMigrate(&models.Shelf{})
     dbp.db.AutoMigrate(&models.User{})
+}
+
+func (dbp *DBProxy) clearSessions() {
+   dbp.db.Exec("DELETE FROM sessions;")
 }

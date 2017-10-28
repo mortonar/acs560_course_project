@@ -5,16 +5,19 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/messages/request"
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
     "github.com/mortonar/acs560_course_project/messaging/handlers"
-    "encoding/json"
+    "github.com/mortonar/acs560_course_project/database"
+    "github.com/mortonar/acs560_course_project/database/models"
 )
 
 type MessageHandler struct {
     requestChan <-chan request.Base
     responseChan chan<- response.Base
+    dbProxy *database.DBProxy
+    session *models.Session
 }
 
 func NewMessageHandler(requestChan <-chan request.Base, responseChan chan<- response.Base) *MessageHandler {
-    mh := &MessageHandler{requestChan, responseChan}
+    mh := &MessageHandler{requestChan, responseChan, database.NewDBProxy(), nil}
     return mh
 }
 
@@ -29,20 +32,28 @@ func (handler *MessageHandler) Stop() {
 func (handler *MessageHandler) process() {
     for {
         message := <-handler.requestChan
-        fmt.Println("MessageHandler::gotMessage ->")
-        fmt.Println(message)
+        fmt.Println("MessageHandler::gotMessage ->\n%v", message)
         switch message.Action {
-        case "Auth":
-            bytes, err := json.Marshal(message.Payload) // TODO actual error handling
-            if err != nil {
-                fmt.Println("Marshal ERROR: ", err)
+        case "CreateAccount":
+            fmt.Println("Creating account...")
+            var createReq = request.CreateAccount{}
+            error := ParseMessage(message, &createReq)
+            if error == nil {
+                handlers.HandleCreateAccount(createReq, handler.dbProxy.GetConnection())
+            } else {
+                fmt.Println("Error: ", error)
             }
-            decoded := string(bytes)
-            fmt.Printf("DECODED: %+v (%T)\n", decoded)
+        case "Auth":
             var authReq = request.AuthRequest{}
-            err = json.Unmarshal(bytes, &authReq)
-            if err != nil {
-                fmt.Println("UnMarshal ERROR: ", err)
+            error := ParseMessage(message, &authReq)
+            if error == nil {
+                session, err := handlers.HandleLogin(authReq, handler.dbProxy.GetConnection())
+                if err == nil {
+                    handler.session = session
+                } else {
+                    fmt.Println(err)
+                }
+
             }
             handlers.HandleLogin(authReq)
 	    case "Search":
@@ -52,9 +63,9 @@ func (handler *MessageHandler) process() {
             }
             decoded := string(bytes)
             fmt.Printf("DECODED: %+v (%T)\n", decoded)
-			
-			// TODO - perform search and  format and send back response
-        }
+		    // TODO - perform search and  format and send back response
+        }		
+        // TODO ensure session exists before allowing other actions
         handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }
 }

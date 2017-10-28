@@ -1,7 +1,7 @@
 package request
 
-type AuthRequest struct {
+type CreateAccount struct {
     UserName string
     Email string
-    EncryptedPass string
+    Password string
 }
