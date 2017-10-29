@@ -43,6 +43,7 @@ func (handler *MessageHandler) process() {
             } else {
                 fmt.Println("Error: ", error)
             }
+            handler.responseChan <- response.Base{true, "Got CreateAccount Message: " + message.Token, nil}
         case "Auth":
             var authReq = request.AuthRequest{}
             error := ParseMessage(message, &authReq)
@@ -55,17 +56,33 @@ func (handler *MessageHandler) process() {
                 }
 
             }
+            handler.responseChan <- response.Base{true, "Got Auth Message: " + message.Token, nil}
 	    case "Search":
             var bookSearch = request.BookSearch{}
             error := ParseMessage(message, &bookSearch)
             if error == nil {
-			    // TODO - handle book search
+                searchResp, err := handlers.HandleBookSearch(bookSearch)
+                if err == nil {
+                    baseResponse := response.Base{Success:true, Status: "Successful Search", Payload: *searchResp}
+                    handler.responseChan <- baseResponse
+                } else {
+                    fmt.Println("Error in search: ", err)
+                    baseResponse := response.Base{
+                        Success:false,
+                        Status: fmt.Sprintf("Error in search: %s", err),
+                        Payload: nil,
+                    }
+                    handler.responseChan <- baseResponse
+                }
             } else {
-                fmt.Println("Error: ", error)			
+                baseResponse := response.Base{
+                    Success:false,
+                    Status: fmt.Sprintf("Error in parsing message: %s", error),
+                    Payload: nil,
+                }
+                handler.responseChan <- baseResponse
 			}
-		    // TODO - perform search and  format and send back response
-        }		
+        }
         // TODO ensure session exists before allowing other actions
-        handler.responseChan <- response.Base{true, "Got Message: " + message.Token}
     }
 }
