@@ -15,6 +15,10 @@
         mc:Ignorable="d"
         Title="Book Tracker" SizeToContent="WidthAndHeight">
 
+    <Window.DataContext>
+        <local:LoginViewModel/>
+    </Window.DataContext>
+
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
@@ -51,7 +55,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">BookTracker</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
-                <Button Content="Button" Width="101" Height="23" Click="Button_Click"/>
+                <local:LoginView/>
             </DockPanel>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
