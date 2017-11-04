@@ -9,16 +9,14 @@ namespace BookTracker
 
         public LoginModel()
         {
-            _userName = "booktracker";
+            _userName = "BookTracker";
             _password = "booktracker";
         }
 
         public String UserName
         {
             get { return _userName; }
-            set {
-                _userName = value;
-            }
+            set { _userName = value; }
         }
 
         public String Password

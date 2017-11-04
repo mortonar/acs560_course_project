@@ -14,9 +14,7 @@ namespace BookTracker
         public LoginModel LoginModel
         {
             get { return _loginModel; }
-            set {
-                _loginModel = value;
-            }
+            set { _loginModel = value; }
         }
 
         public LoginViewModel()

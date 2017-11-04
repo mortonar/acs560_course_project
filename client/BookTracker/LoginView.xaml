@@ -4,15 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookTracker"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Height="300" Width="450">
     <Grid>
-        <TextBlock Text="Log in" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" FontSize="20"/>
-        <TextBlock Text="Name" Grid.Row="1" Margin="3"/>
-        <TextBox x:Name="txtName" Text="{Binding LoginModel.UserName}" Grid.Row="1" Grid.Column="1" Margin="3" MinWidth="100" HorizontalAlignment="Left"/>
-        <TextBlock Text="Password" Grid.Row="4" Margin="3"/>
-        <TextBox x:Name="txtPassword" Text="{Binding LoginModel.UserName}" Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" HorizontalAlignment="Left"/>
-        <Button Command="{Binding }" Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Log in" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="20" Grid.Column="1" Width="100"/>
+        <TextBlock Text="Password" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="2" Grid.Column="1"/>
+        <TextBox x:Name="txtName" Text="{Binding LoginModel.UserName}" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Width="110"/>
+        <TextBlock Text="Username" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="1" Grid.Column="1"/>
+        <TextBox x:Name="txtPassword" Text="{Binding LoginModel.Password}" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="110" />
+        <Button Command="{Binding ''}" Content="Log in" Margin="10,5,10,5" Grid.Row="3" Grid.Column="1"/>
     </Grid>
 </UserControl>
