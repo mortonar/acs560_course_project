@@ -1,4 +1,5 @@
-Functional Requirements:
+﻿Functional Requirements:
+
 A user shall be able to create and manage their account.
 A user shall be able to recover their username.
 A user shall be able to reset their password.
