@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="LoginModel.cs" />
+    <Compile Include="Messaging\Requests\Base.cs" />
+    <Compile Include="Messaging\Requests\Login.cs" />
     <Compile Include="ServerProxy.cs" />
     <Page Include="LoginView.xaml">
       <SubType>Designer</SubType>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookTracker.Messaging.Requests;
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
 
@@ -25,6 +26,18 @@ namespace BookTracker
         public void Login()
         {
             Debug.Write("Logging in with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
+            Login login = new Login
+            {
+                UserName = _loginModel.UserName,
+                EncryptedPass = _loginModel.Password
+            };
+            Base message = new Base
+            {
+                Action = "Auth",
+                Payload = login
+            };
+            string response = ServerProxy.Instance.sendRequest(message);
+            Debug.WriteLine("RESPONSE: " + response);
         }
 
         public bool CanExecute(object parameter)

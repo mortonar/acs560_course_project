@@ -7,8 +7,6 @@ namespace BookTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ServerProxy serverProxy = new ServerProxy();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -17,7 +15,7 @@ namespace BookTracker
         // Button for testing server requests
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            serverProxy.sendRequest();
+            ServerProxy.Instance.sendRequest(new Messaging.Requests.Base { });
         }
     }
 }
