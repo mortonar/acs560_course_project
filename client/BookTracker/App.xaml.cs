@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 
 namespace BookTracker
@@ -17,6 +11,11 @@ namespace BookTracker
         void App_Startup(object sender, StartupEventArgs sea)
         {
             Debug.WriteLine("Starting up...");
+
+            MainWindow app = new MainWindow();
+            MainWindowViewModel context = new MainWindowViewModel();
+            app.DataContext = context;
+            app.Show();
 
             // TODO use command line arg to set ServerProxy's server address
             // initialize the ServerProxy

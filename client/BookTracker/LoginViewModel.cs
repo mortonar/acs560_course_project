@@ -1,11 +1,12 @@
-﻿using BookTracker.Messaging.Requests;
+﻿using BookTracker.HelperClasses;
+using BookTracker.Messaging.Requests;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 
 namespace BookTracker
 {
-    public class LoginViewModel : ICommand
+    public class LoginViewModel : ObservableObject, ICommand, IPageViewModel
     {
 
         private LoginModel _loginModel;
@@ -16,6 +17,11 @@ namespace BookTracker
         {
             get { return _loginModel; }
             set { _loginModel = value; }
+        }
+
+        public string Name
+        {
+            get { return "Login"; }
         }
 
         public LoginViewModel()

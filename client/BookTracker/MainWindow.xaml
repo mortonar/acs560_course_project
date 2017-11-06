@@ -15,48 +15,31 @@
         mc:Ignorable="d"
         Title="Book Tracker" SizeToContent="WidthAndHeight">
 
-    <Window.DataContext>
-        <local:LoginViewModel/>
-    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:HomeViewModel}">
+            <local:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:LoginViewModel}">
+            <local:LoginView />
+        </DataTemplate>
+    </Window.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="212">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                                    DockPanel.Dock="Top"
-                                    HorizontalAlignment="Right" Margin="16"
-                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                    <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
-                             ItemsSource="{Binding DemoItems}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="domain:DemoItem">
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DockPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
-            <DockPanel>
-                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                            Mode="PrimaryMid" DockPanel.Dock="Top">
-                    <DockPanel>
-                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
-                                        x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                            <StackPanel>
-                                <Button Content="Account" IsEnabled="False" />
-                                <Separator/>
-                                <Button Content="Settings" IsEnabled="False" />
-                                <Separator/>
-                                <Button Content="Logout" IsEnabled="False" />
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">BookTracker</TextBlock>
-                    </DockPanel>
-                </materialDesign:ColorZone>
-                <local:LoginView/>
-            </DockPanel>
-        </materialDesign:DrawerHost>
-    </materialDesign:DialogHost>
+    <DockPanel>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            Mode="PrimaryMid" DockPanel.Dock="Left">
+            <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+            <ItemsControl ItemsSource="{Binding PageViewModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}"
+                                Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding }" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        </materialDesign:ColorZone>
+        <ContentControl Content="{Binding CurrentPageViewModel}" />
+    </DockPanel>
 </Window>

@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="BookTracker.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookTracker"
+             mc:Ignorable="d" Height="300" Width="450">
+    <Grid>
+        <TextBlock Text="Home" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" />
+    </Grid>
+</UserControl>

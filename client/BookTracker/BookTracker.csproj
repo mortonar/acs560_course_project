@@ -70,14 +70,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\RelayCommand.cs" />
+    <Compile Include="HelperClasses\ObservableObject.cs" />
+    <Compile Include="HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomeViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="Messaging\Requests\Base.cs" />
     <Compile Include="Messaging\Requests\Login.cs" />
+    <Compile Include="IPageViewModel.cs" />
     <Compile Include="ServerProxy.cs" />
+    <Page Include="HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,5 +134,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
