@@ -1,4 +1,5 @@
 ﻿using BookTracker.HelperClasses;
+using BookTracker.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -18,8 +19,12 @@ namespace BookTracker
         {
             // Add available pages
             PageViewModels.Add(new HomeViewModel());
+            // TODO - Make this ViewModel either login or logout, depending on the current status of the session
             PageViewModels.Add(new LoginViewModel());
             PageViewModels.Add(new BookSearchViewModel());
+            PageViewModels.Add(new ToReadListViewModel());
+            PageViewModels.Add(new ReadingListViewModel());
+            PageViewModels.Add(new ReadListViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];

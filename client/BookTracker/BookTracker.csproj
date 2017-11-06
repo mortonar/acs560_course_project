@@ -71,15 +71,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BookListModel.cs" />
+    <Compile Include="Models\BookModel.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
     <Compile Include="BookSearchView.xaml.cs">
       <DependentUpon>BookSearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ToReadListView.xaml.cs">
+      <DependentUpon>ToReadListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadListView.xaml.cs">
+      <DependentUpon>ReadListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadingListView.xaml.cs">
+      <DependentUpon>ReadingListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BookSearchViewModel.cs" />
+    <Compile Include="ViewModels\ToReadListViewModel.cs" />
+    <Compile Include="ViewModels\ReadingListViewModel.cs" />
+    <Compile Include="ViewModels\ReadListViewModel.cs" />
     <Compile Include="LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -92,6 +106,18 @@
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="ServerProxy.cs" />
     <Page Include="BookSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToReadListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReadListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReadingListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
