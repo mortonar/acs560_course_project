@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type local:LoginViewModel}">
             <local:LoginView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:BookSearchViewModel}">
+            <local:BookSearchView />
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel>

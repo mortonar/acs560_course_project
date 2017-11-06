@@ -72,6 +72,9 @@
     </ApplicationDefinition>
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
+    <Compile Include="BookSearchView.xaml.cs">
+      <DependentUpon>BookSearchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
     <Compile Include="Messaging\Requests\Login.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="ServerProxy.cs" />
+    <Page Include="BookSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
