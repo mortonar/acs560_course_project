@@ -19,6 +19,7 @@ namespace BookTracker
             // Add available pages
             PageViewModels.Add(new HomeViewModel());
             PageViewModels.Add(new LoginViewModel());
+            PageViewModels.Add(new BookSearchViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
