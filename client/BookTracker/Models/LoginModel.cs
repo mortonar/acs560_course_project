@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookTracker
+namespace BookTracker.Models
 {
     public class LoginModel
     {

@@ -3,12 +3,11 @@ using System.Windows.Input;
 using System;
 using System.Diagnostics;
 using BookTracker.Messaging.Requests;
-using BookTracker.ViewModels;
 using Newtonsoft.Json;
 using BookTracker.Models;
 using Newtonsoft.Json.Linq;
 
-namespace BookTracker
+namespace BookTracker.ViewModels
 {
     public class BookSearchViewModel : ObservableObject, ICommand, IPageViewModel
     {
