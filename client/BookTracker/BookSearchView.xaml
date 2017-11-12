@@ -6,7 +6,19 @@
              xmlns:local="clr-namespace:BookTracker"
              mc:Ignorable="d" Height="300" Width="450">
     <Grid>
-        <TextBlock Text="Book Search" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="        Book Search" FontWeight="Bold" HorizontalAlignment="Center" Margin="12,5,10,10" FontSize="20" Grid.Column="1" Width="220"/>
         <TextBlock Text="Author" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="2" Grid.Column="1"/>
         <TextBox x:Name="txtAuthor" Text="{Binding BookSearchModel.Author}" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Width="110"/>
         <TextBlock Text="Title" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="1" Grid.Column="1"/>
