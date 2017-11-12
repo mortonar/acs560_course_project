@@ -58,7 +58,7 @@ func (handler *MessageHandler) process() {
             }
             payload := response.Login{ Token: handler.session.Token }
             handler.responseChan <- response.Base{true, "Got Auth Message", payload }
-	    case "Search":
+	    case "BookSearch":
             var bookSearch = request.BookSearch{}
             error := ParseMessage(message, &bookSearch)
             if error == nil {
