@@ -6,6 +6,11 @@
              xmlns:local="clr-namespace:BookTracker.Views"
              mc:Ignorable="d" Height="300" Width="450">
     <Grid>
-        <TextBlock Text="To Read List" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" />
+        <ListBox x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2" />
     </Grid>
 </UserControl>
