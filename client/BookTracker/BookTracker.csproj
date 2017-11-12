@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -72,12 +73,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BookSearchModel.cs" />
+    <Compile Include="Messaging\Requests\BookSearch.cs" />
+    <Compile Include="Messaging\Responses\Base.cs" />
     <Compile Include="Models\BookListModel.cs" />
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
     <Compile Include="BookSearchView.xaml.cs">
       <DependentUpon>BookSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BookSearchResultsViewModel.cs" />
+    <Compile Include="Views\BookSearchResultsView.xaml.cs">
+      <DependentUpon>BookSearchResultsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToReadListView.xaml.cs">
       <DependentUpon>ToReadListView.xaml</DependentUpon>
@@ -109,6 +116,10 @@
     <Page Include="BookSearchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BookSearchResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ToReadListView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Messaging\Responses\BookSearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

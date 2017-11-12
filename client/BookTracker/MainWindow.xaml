@@ -27,6 +27,9 @@
         <DataTemplate DataType="{x:Type local:BookSearchViewModel}">
             <local:BookSearchView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local2:BookSearchResultsViewModel}">
+            <local1:BookSearchResultsView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type local2:ToReadListViewModel}">
             <local1:ToReadListView />
         </DataTemplate>

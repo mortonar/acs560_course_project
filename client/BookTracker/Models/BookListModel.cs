@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BookTracker.Models
 {
-    class BookListModel
+    public class BookListModel
     {
         private List<BookModel> bookList;
 

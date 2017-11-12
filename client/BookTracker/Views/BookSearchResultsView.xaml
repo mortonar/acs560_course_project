@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="BookTracker.Views.BookSearchResultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BookTracker.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <TextBlock Text="Search Results" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" />
+        <ListBox x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}">
+        </ListBox>
+    </Grid>
+</UserControl>

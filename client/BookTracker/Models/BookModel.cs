@@ -2,7 +2,7 @@
 
 namespace BookTracker.Models
 {
-    class BookModel
+    public class BookModel
     {
         private String title;
         private String author;
@@ -31,6 +31,11 @@ namespace BookTracker.Models
         {
             get { return isbn13; }
             set { isbn13 = value; }
+        }
+
+        public override String ToString()
+        {
+            return title + " by " + author;
         }
     }
 }
