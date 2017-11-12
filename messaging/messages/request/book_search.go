@@ -1,6 +1,6 @@
 package request
 
 type BookSearch struct {
-    BookName string
-    AuthorName string
+    Title  string
+    Author string
 }

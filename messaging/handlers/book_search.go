@@ -13,8 +13,8 @@ import (
 )
 
 func HandleBookSearch(searchReq request.BookSearch) (*response.BookSearch, error) {
-    title := url.QueryEscape(searchReq.BookName)
-    author := url.QueryEscape(searchReq.AuthorName)
+    title := url.QueryEscape(searchReq.Title)
+    author := url.QueryEscape(searchReq.Author)
     // TODO super big hack. hard-coded api key, results limit, return fields, etc.
     searchString := fmt.Sprintf("https://www.googleapis.com/books/v1/volumes?q=intitle:%s+inauthor:%s&" +
         "key=AIzaSyCD-MeEYy5AxnvsH--Tm--g3VOPedkAW8s" +
