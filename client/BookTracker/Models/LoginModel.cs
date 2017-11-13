@@ -9,7 +9,7 @@ namespace BookTracker.Models
 
         public LoginModel()
         {
-            _userName = "BookTracker";
+            _userName = "booktracker";
             _password = "booktracker";
         }
 

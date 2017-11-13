@@ -54,7 +54,10 @@ namespace BookTracker.ViewModels
 
         public void Execute(object parameter)
         {
+            IPasswordProvider passwordProv = parameter as IPasswordProvider;
+            LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
             Login();
         }
+
     }
 }
