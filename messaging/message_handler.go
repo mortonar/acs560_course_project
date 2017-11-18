@@ -58,7 +58,7 @@ func (handler *MessageHandler) process() {
             }
             payload := response.Login{ Token: handler.session.Token }
             handler.responseChan <- response.Base{true, "Got Auth Message", payload }
-	    case "BookSearch":
+        case "BookSearch":
             var bookSearch = request.BookSearch{}
             error := ParseMessage(message, &bookSearch)
             if error == nil {
@@ -82,8 +82,37 @@ func (handler *MessageHandler) process() {
                     Payload: nil,
                 }
                 handler.responseChan <- baseResponse
-			}
+	    }        
+        case "BookList":
+            fmt.Println("Got a BookList Request")
+            var bookList = request.BookList{}
+            error := ParseMessage(message, &bookList)
+            if error == nil {
+                fmt.Println("Making HandleBookListRequest")
+                searchResp, err := handlers.HandleBookList(bookList)
+                if err == nil {
+                    baseResponse := response.Base{Success:true, Status: "Successful Book List Request", Payload: *searchResp}
+                    handler.responseChan <- baseResponse
+                } else {
+                    fmt.Println("Error in search: ", err)
+                    baseResponse := response.Base{
+                        Success:false,
+                        Status: fmt.Sprintf("Error in search: %s", err),
+                        Payload: nil,
+                    }
+                    handler.responseChan <- baseResponse
+                }
+            } else {
+                baseResponse := response.Base{
+                    Success:false,
+                    Status: fmt.Sprintf("Error in parsing message: %s", error),
+                    Payload: nil,
+                }
+                handler.responseChan <- baseResponse
+            }
         }
-        // TODO ensure session exists before allowing other actions
+
+
+         // TODO ensure session exists before allowing other actions
     }
 }
