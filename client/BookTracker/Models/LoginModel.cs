@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookTracker
+namespace BookTracker.Models
 {
     public class LoginModel
     {
@@ -9,7 +9,7 @@ namespace BookTracker
 
         public LoginModel()
         {
-            _userName = "BookTracker";
+            _userName = "booktracker";
             _password = "booktracker";
         }
 

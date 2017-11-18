@@ -72,14 +72,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BookSearchModel.cs" />
+    <Compile Include="Messaging\Requests\BookList.cs" />
+    <Compile Include="HelperClasses\IPasswordProvider.cs" />
+    <Compile Include="HelperClasses\PasswordUtils.cs" />
+    <Compile Include="Models\BookSearchModel.cs" />
     <Compile Include="Messaging\Requests\BookSearch.cs" />
     <Compile Include="Messaging\Responses\Base.cs" />
     <Compile Include="Models\BookListModel.cs" />
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
-    <Compile Include="BookSearchView.xaml.cs">
+    <Compile Include="Views\BookSearchView.xaml.cs">
       <DependentUpon>BookSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BookSearchResultsViewModel.cs" />
@@ -98,22 +101,22 @@
     <Compile Include="HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BookSearchViewModel.cs" />
+    <Compile Include="ViewModels\BookSearchViewModel.cs" />
     <Compile Include="ViewModels\ToReadListViewModel.cs" />
     <Compile Include="ViewModels\ReadingListViewModel.cs" />
     <Compile Include="ViewModels\ReadListViewModel.cs" />
-    <Compile Include="LoginView.xaml.cs">
+    <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="LoginViewModel.cs" />
-    <Compile Include="LoginModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Messaging\Requests\Base.cs" />
     <Compile Include="Messaging\Requests\Login.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="ServerProxy.cs" />
-    <Page Include="BookSearchView.xaml">
+    <Page Include="Views\BookSearchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -137,7 +140,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LoginView.xaml">
+    <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

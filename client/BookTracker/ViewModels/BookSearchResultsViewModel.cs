@@ -1,10 +1,6 @@
 ﻿using BookTracker.HelperClasses;
 using BookTracker.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookTracker.ViewModels
 {
@@ -29,5 +25,7 @@ namespace BookTracker.ViewModels
         {
             _searchResults = results;
         }
+
+        public void Update() { }
     }
 }

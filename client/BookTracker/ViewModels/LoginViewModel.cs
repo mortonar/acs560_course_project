@@ -1,10 +1,11 @@
 ﻿using BookTracker.HelperClasses;
 using BookTracker.Messaging.Requests;
+using BookTracker.Models;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace BookTracker
+namespace BookTracker.ViewModels
 {
     public class LoginViewModel : ObservableObject, ICommand, IPageViewModel
     {
@@ -53,7 +54,12 @@ namespace BookTracker
 
         public void Execute(object parameter)
         {
+            IPasswordProvider passwordProv = parameter as IPasswordProvider;
+            LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
             Login();
         }
+
+        public void Update() { }
+
     }
 }

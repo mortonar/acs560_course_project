@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BookTracker
+namespace BookTracker.Models
 {
     public class BookSearchModel
     {
@@ -13,8 +9,8 @@ namespace BookTracker
 
         public BookSearchModel()
         {
-            _author = "George Orwell";
-            _title = "1984";
+            _author = "1984";
+            _title = "George Orwell";
         }
 
         public String Author

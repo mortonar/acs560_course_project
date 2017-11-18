@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BookTracker"
         xmlns:local1="clr-namespace:BookTracker.Views"
-        xmlns:local2="clr-namespace:BookTracker.ViewModels"
+        xmlns:ViewModels="clr-namespace:BookTracker.ViewModels"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -21,22 +21,22 @@
         <DataTemplate DataType="{x:Type local:HomeViewModel}">
             <local:HomeView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:LoginViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:LoginViewModel}">
             <local:LoginView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:BookSearchViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:BookSearchViewModel}">
             <local:BookSearchView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local2:BookSearchResultsViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:BookSearchResultsViewModel}">
             <local1:BookSearchResultsView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local2:ToReadListViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:ToReadListViewModel}">
             <local1:ToReadListView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local2:ReadingListViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:ReadingListViewModel}">
             <local1:ReadingListView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local2:ReadListViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:ReadListViewModel}">
             <local1:ReadListView />
         </DataTemplate>
     </Window.Resources>

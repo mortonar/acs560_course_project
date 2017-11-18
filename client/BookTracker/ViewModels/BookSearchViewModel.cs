@@ -3,12 +3,11 @@ using System.Windows.Input;
 using System;
 using System.Diagnostics;
 using BookTracker.Messaging.Requests;
-using BookTracker.ViewModels;
 using Newtonsoft.Json;
 using BookTracker.Models;
 using Newtonsoft.Json.Linq;
 
-namespace BookTracker
+namespace BookTracker.ViewModels
 {
     public class BookSearchViewModel : ObservableObject, ICommand, IPageViewModel
     {
@@ -63,5 +62,7 @@ namespace BookTracker
             Messaging.Responses.BookSearch searchResponse = (responseMsg.Payload as JObject).ToObject<Messaging.Responses.BookSearch>();
             ((App)App.Current).changeViewModel(new BookSearchResultsViewModel(new BookListModel(searchResponse.Books)));
         }
+
+        public void Update() { }
     }
 }
