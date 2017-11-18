@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messaging\Requests\BookList.cs" />
     <Compile Include="HelperClasses\IPasswordProvider.cs" />
     <Compile Include="HelperClasses\PasswordUtils.cs" />
     <Compile Include="Models\BookSearchModel.cs" />

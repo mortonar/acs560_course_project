@@ -62,5 +62,7 @@ namespace BookTracker.ViewModels
             Messaging.Responses.BookSearch searchResponse = (responseMsg.Payload as JObject).ToObject<Messaging.Responses.BookSearch>();
             ((App)App.Current).changeViewModel(new BookSearchResultsViewModel(new BookListModel(searchResponse.Books)));
         }
+
+        public void Update() { }
     }
 }

@@ -25,5 +25,7 @@ namespace BookTracker.ViewModels
         {
             _searchResults = results;
         }
+
+        public void Update() { }
     }
 }

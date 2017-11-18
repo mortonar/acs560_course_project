@@ -8,5 +8,7 @@ namespace BookTracker
         {
             get { return "Home"; }
         }
+
+        public void Update() { }
     }
 }

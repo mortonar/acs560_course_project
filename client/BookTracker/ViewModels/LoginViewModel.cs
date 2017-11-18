@@ -59,5 +59,7 @@ namespace BookTracker.ViewModels
             Login();
         }
 
+        public void Update() { }
+
     }
 }
