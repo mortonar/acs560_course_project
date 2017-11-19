@@ -55,12 +55,20 @@ namespace BookTracker.ViewModels
                 Action = "BookSearch",
                 Payload = bookSearch
             };
-            string response = ServerProxy.Instance.sendRequest(message);
-            Debug.WriteLine("RESPONSE: " + response + "\n");
-            Messaging.Responses.Base responseMsg = JsonConvert.DeserializeObject<Messaging.Responses.Base>(response);
-            Debug.WriteLine("PAYLOD: " + responseMsg.Payload);
-            Messaging.Responses.BookSearch searchResponse = (responseMsg.Payload as JObject).ToObject<Messaging.Responses.BookSearch>();
-            ((App)App.Current).changeViewModel(new BookSearchResultsViewModel(new BookListModel(searchResponse.Books)));
+
+            try
+            {
+                string response = ServerProxy.Instance.sendRequest(message);
+                Debug.WriteLine("RESPONSE: " + response + "\n");
+                Messaging.Responses.Base responseMsg = JsonConvert.DeserializeObject<Messaging.Responses.Base>(response);
+                Debug.WriteLine("PAYLOD: " + responseMsg.Payload);
+                Messaging.Responses.BookSearch searchResponse = (responseMsg.Payload as JObject).ToObject<Messaging.Responses.BookSearch>();
+                ((App)App.Current).changeViewModel(new BookSearchResultsViewModel(new BookListModel(searchResponse.Books)));
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: " + e);
+            }
         }
 
         public void Update() { }

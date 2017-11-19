@@ -43,8 +43,15 @@ namespace BookTracker.ViewModels
                 Action = "Auth",
                 Payload = login
             };
-            string response = ServerProxy.Instance.sendRequest(message);
-            Debug.WriteLine("RESPONSE: " + response);
+            try
+            {
+                string response = ServerProxy.Instance.sendRequest(message);
+                Debug.WriteLine("RESPONSE: " + response);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: " + e);
+            }
         }
 
         public bool CanExecute(object parameter)
