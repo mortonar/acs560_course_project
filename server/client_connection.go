@@ -44,12 +44,18 @@ func (clientConn *ClientConnection) Stop() {
 }
 
 func (clientConn *ClientConnection) handleRequests() {
+    empty := request.Base{}
     for {
         fmt.Println("waiting for message...")
         jsonDecoder := json.NewDecoder(clientConn.Connection)
         fmt.Println("received message!")
         var message request.Base
         jsonDecoder.Decode(&message)
+        if message == empty {
+            fmt.Println("empty message! stopping clientconnection!")
+            clientConn.Stop()
+            break
+        }
         fmt.Println(message)
         clientConn.requestChan <- message
     }

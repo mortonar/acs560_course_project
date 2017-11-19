@@ -30,9 +30,14 @@ func (handler *MessageHandler) Stop() {
 }
 
 func (handler *MessageHandler) process() {
+    empty := request.Base{}
     for {
         message := <-handler.requestChan
         fmt.Println("MessageHandler::gotMessage ->\n%v", message)
+        if message == empty {
+            fmt.Println("empty message! stopping messagehandler!")
+            break
+        }
         switch message.Action {
         case "CreateAccount":
             fmt.Println("Creating account...")
