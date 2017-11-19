@@ -15,6 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
+        Unloaded="Window_Unloaded" MinWidth="1500" MinHeight="800"
         Title="Book Tracker" SizeToContent="WidthAndHeight">
 
     <Window.Resources>

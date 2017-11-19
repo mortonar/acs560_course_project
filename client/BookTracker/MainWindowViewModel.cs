@@ -82,12 +82,8 @@ namespace BookTracker
             if (!PageViewModels.Contains(viewModel))
             {
                 PageViewModels.Add(viewModel);
-            }
-
-            if (viewModel is ToReadListViewModel || viewModel is ReadingListViewModel || viewModel is ReadListViewModel)
-            {
-                viewModel.Update();
-            }
+            }            
+            viewModel.Update();
 
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);

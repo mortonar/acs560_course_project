@@ -17,5 +17,10 @@ namespace BookTracker
         {
             ServerProxy.Instance.sendRequest(new Messaging.Requests.Base { });
         }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

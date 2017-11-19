@@ -8,11 +8,13 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="1" Grid.Column="2"/>
-        <TextBlock Text="{Binding Path=BookModel.Listing}" FontSize="20" Grid.Column="2"/>
-        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="20" TextWrapping="Wrap" Grid.Column="1" Grid.Row="3"/>
+        <TextBlock Text="{Binding Path=BookModel.Listing}" FontSize="20" Grid.Row="1"/>
+        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="14" TextWrapping="Wrap" Grid.Row="2" />
+        <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="4" />
     </Grid>
 </UserControl>
