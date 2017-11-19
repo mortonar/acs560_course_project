@@ -1,6 +1,9 @@
-﻿using System;
+﻿using BookTracker.ViewModels;
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BookTracker.Models
 {
@@ -9,6 +12,9 @@ namespace BookTracker.Models
         private String title;
         private String author;
         private String isbn13;
+        private String description;
+        private String thumbnailURL;
+        private String imageURL;
 
         public BookModel(string title, string author, string isbn13)
         {
@@ -35,6 +41,24 @@ namespace BookTracker.Models
             set { isbn13 = value; }
         }
 
+        public String Description
+        {
+            get { return description;  }
+            set { description = value; }
+        }
+
+        public String ThumbnailURL
+        {
+            get { return thumbnailURL; }
+            set { thumbnailURL = value; }
+        }
+
+        public String ImageURL
+        {
+            get { return imageURL; }
+            set { imageURL = value; }
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -45,6 +69,7 @@ namespace BookTracker.Models
         public void Execute(object parameter)
         {
             Debug.WriteLine("Book model execute(" + this.ToString() + ")");
+            ((App)App.Current).changeViewModel(new BookViewModel(this));
         }
 
         public String Listing
@@ -55,9 +80,26 @@ namespace BookTracker.Models
             }
         }
 
+        public ImageSource Image
+        {
+            get { return getDisplayImage(); }
+        }
+
         public override String ToString()
         {
             return title + " by " + author;
+        }
+
+        private ImageSource getDisplayImage()
+        {
+            
+            String image = String.IsNullOrEmpty(imageURL) ? thumbnailURL : imageURL;
+            if (String.IsNullOrEmpty(image))
+            {
+                image = "/BookTracker;component/Resources/CoverNotFound.bmp";
+
+            }
+            return new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
         }
     }
 }

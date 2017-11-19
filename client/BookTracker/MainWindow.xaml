@@ -30,6 +30,9 @@
         <DataTemplate DataType="{x:Type ViewModels:BookSearchResultsViewModel}">
             <local1:BookSearchResultsView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:BookViewModel}">
+            <local1:BookView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:ToReadListViewModel}">
             <local1:ToReadListView />
         </DataTemplate>
