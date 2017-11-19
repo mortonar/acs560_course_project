@@ -12,7 +12,7 @@ namespace BookTracker
 
         TcpClient clientSocket = new TcpClient();
         // TODO - implement a domain instead of hardcoded IP address to allow for changes in the VM's address
-        public string ipAddress = "192.168.1.107";
+        public string ipAddress = "192.168.1.146";
         public int port = 8000;
 
         public static ServerProxy Instance
