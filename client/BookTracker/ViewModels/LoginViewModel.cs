@@ -54,6 +54,31 @@ namespace BookTracker.ViewModels
             }
         }
 
+        public void Create_Account()
+        {
+            Debug.Write("Create Account with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
+            Login login = new Login
+            {
+                UserName = _loginModel.UserName,
+                EncryptedPass = _loginModel.Password
+            };
+            Base message = new Base
+            {
+                Action = "Auth",
+                Payload = login
+            };
+            try
+            {
+                string response = ServerProxy.Instance.sendRequest(message);
+                Debug.WriteLine("RESPONSE: " + response);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: " + e);
+            }
+        }
+
+
         public bool CanExecute(object parameter)
         {
             return true;
