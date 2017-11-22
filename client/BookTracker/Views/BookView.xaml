@@ -7,14 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="120*"/>
-            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Path=BookModel.Listing}" FontSize="20" Grid.Row="1"/>
-        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="14" TextWrapping="Wrap" Grid.Row="2" />
-        <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="4" />
+        <TextBlock Text="{Binding Path=BookModel.Listing}" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="14" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" />
+        <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="1" Grid.Column="0" />
     </Grid>
 </UserControl>
