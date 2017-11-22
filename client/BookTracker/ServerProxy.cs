@@ -11,8 +11,7 @@ namespace BookTracker
         private static readonly object mutex = new object();
 
         TcpClient clientSocket = new TcpClient();
-        // TODO - implement a domain instead of hardcoded IP address to allow for changes in the VM's address
-        public string ipAddress = "192.168.1.146";
+        public string host = "booktracker.com";
         public int port = 8000;
 
         public static ServerProxy Instance
@@ -34,7 +33,7 @@ namespace BookTracker
         {
             try
             {
-                clientSocket.Connect(ipAddress, port);
+                clientSocket.Connect(host, port);
             }
             catch (SocketException SE)
             {
