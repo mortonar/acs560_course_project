@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookTracker"
+             xmlns:model="clr-namespace:BookTracker.Models"
              mc:Ignorable="d" Height="300" Width="450">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,6 +27,6 @@
         <TextBlock Text="Username" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="1" Grid.Column="1"/>
         <PasswordBox x:Name="UserPassword" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Width="110" />
         <Button Command="{Binding ''}" CommandParameter="{Binding ElementName=UserLoginView}" Content="Log in" Margin="10,5,10,5" Grid.Row="3" Grid.Column="1"/>
-        <Button Command="{Binding 'Create'}" CommandParameter="{Binding ElementName=UserLoginView}" Content="Create Account" Margin="10,5,10,5" Grid.Row="4" Grid.Column="1"/>
+        <Button Command="{Binding ''}" CommandParameter="Create" Content="Create Account" Margin="10,5,10,5" Grid.Row="4" Grid.Column="1"/>
     </Grid>
 </UserControl>

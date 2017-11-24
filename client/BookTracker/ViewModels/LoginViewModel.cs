@@ -86,20 +86,15 @@ namespace BookTracker.ViewModels
 
         public void Execute(object parameter)
         {
-            Debug.Write("Running execute");
-            IPasswordProvider passwordProv = parameter as IPasswordProvider;
-            LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
-            Login();
+            if (parameter.GetType() == typeof(String) && parameter.Equals("Create")) {
+                Create_Account();
+            } else {
+                IPasswordProvider passwordProv = parameter as IPasswordProvider;
+                LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
+                Login();
+            }
         }
 
-
-        public void CreateExecute(object parameter)
-        {
-            Debug.Write("Running create execute");
-            IPasswordProvider passwordProv = parameter as IPasswordProvider;
-            LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
-            Login();
-        }
         public void Update() { }
 
     }
