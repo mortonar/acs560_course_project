@@ -1,44 +1,28 @@
 package handlers
 
 import (
+    "github.com/jinzhu/gorm"
+    "github.com/mortonar/acs560_course_project/database/models"
     "github.com/mortonar/acs560_course_project/messaging/messages/request"
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
-    "net/url"
+    "errors"
     "fmt"
-//    "encoding/json"
-    "github.com/mortonar/acs560_course_project/database/models"
+    "net/url"
 )
 
-func HandleBookList(searchReq request.BookList) (*response.BookList, error) {
-    Name := url.QueryEscape(searchReq.Name)
-fmt.Println(Name)
-    // TODO super big hack. hard-coded response
-    fmt.Println("Book List Response")
+// Handles a Book List request, returning a response containing the book list
+func HandleBookList(searchReq request.BookList, db *gorm.DB) (*response.BookList, error) {
+    fmt.Println("Handling book list request...")
+    Shelf := models.Shelf{}
+    name := url.QueryEscape(searchReq.Name)
+    db.Preload("Books").First(&Shelf, "name = ?", name)
+    fmt.Println("Found BookList named " + name)
     
-    bookList := response.BookList{make([]models.Book, 0)}
-
-    bookList.Books = append(bookList.Books, models.Book{ISBN13: "a2salksjd5f5",
-        Title: "Dracula", Author: "Bram Stoker"})
-    bookList.Books = append(bookList.Books, models.Book{ISBN13: "aasd0f769a7sf",
-        Title: "Legacies", Author: "L.E. Modsitt, JR."})
-    
-   // sr := ListResponse{}
-
- //   json.Unmarshal(bookList, &sr)
-
-    return &bookList, nil
+    if &Shelf != nil {
+        fmt.Println(len(Shelf.Books))
+        response := response.BookList{Books: Shelf.Books}
+        return &response, nil
+    } else {
+        return nil, errors.New(fmt.Sprint("Cannot find book list with name %v", name))
+    }
 }
-
-type ListResponse struct {
-    Items []ResponseItem2
-}
-
-type ResponseItem2 struct {
-    VolumeInfo2 VolumeInfo
-}
-
-type VolumneInfo2 struct {
-    Name string
-}
-
-

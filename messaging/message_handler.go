@@ -94,7 +94,7 @@ func (handler *MessageHandler) process() {
             error := ParseMessage(message, &bookList)
             if error == nil {
                 fmt.Println("Making HandleBookListRequest")
-                searchResp, err := handlers.HandleBookList(bookList)
+                searchResp, err := handlers.HandleBookList(bookList, handler.dbProxy.GetConnection())
                 if err == nil {
                     baseResponse := response.Base{Success:true, Status: "Successful Book List Request", Payload: *searchResp}
                     handler.responseChan <- baseResponse
