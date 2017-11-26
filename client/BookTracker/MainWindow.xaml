@@ -45,22 +45,22 @@
         </DataTemplate>
     </Window.Resources>
 
-    <DockPanel>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                            Mode="PrimaryMid" DockPanel.Dock="Left">
-            <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
-            <ItemsControl ItemsSource="{Binding PageViewModels}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Name}"
+    <DockPanel Height="800">
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                            Mode="PrimaryMid" DockPanel.Dock="Left" Height="800">
+            <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,0,0">
+                <ItemsControl ItemsSource="{Binding PageViewModels}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Name}"  Margin="5,10,5,10"
                                 Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding }" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
-
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
         </materialDesign:ColorZone>
         <ContentControl Content="{Binding CurrentPageViewModel}" />
+
     </DockPanel>
 </Window>
