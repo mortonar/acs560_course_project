@@ -42,82 +42,85 @@ func (handler *MessageHandler) process() {
         case "CreateAccount":
             fmt.Println("Creating account...")
             var createReq = request.CreateAccount{}
-            error := ParseMessage(message, &createReq)
-            if error == nil {
+            if handler.parse(message, &createReq) {
                 handlers.HandleCreateAccount(createReq, handler.dbProxy.GetConnection())
-            } else {
-                fmt.Println("Error: ", error)
+                handler.responseChan <- response.Base{true, "Got CreateAccount Message: " + message.Token, nil}
             }
-            handler.responseChan <- response.Base{true, "Got CreateAccount Message: " + message.Token, nil}
         case "Auth":
             var authReq = request.AuthRequest{}
-            error := ParseMessage(message, &authReq)
-            if error == nil {
+            if handler.parse(message, &authReq) {
                 session, err := handlers.HandleLogin(authReq, handler.dbProxy.GetConnection())
                 if err == nil {
                     handler.session = session
+                    payload := response.Login{ Token: handler.session.Token }
+                    handler.responseChan <- response.Base{true, "Login Success", payload }
                 } else {
-                    fmt.Println(err)
+                    handler.handleGenericError("Login error", err)
                 }
-
             }
-            payload := response.Login{ Token: handler.session.Token }
-            handler.responseChan <- response.Base{true, "Got Auth Message", payload }
+        // TODO ensure session exists before processing actions
         case "BookSearch":
             var bookSearch = request.BookSearch{}
-            error := ParseMessage(message, &bookSearch)
-            if error == nil {
+            if handler.parse(message, &bookSearch) {
                 searchResp, err := handlers.HandleBookSearch(bookSearch)
                 if err == nil {
                     baseResponse := response.Base{Success:true, Status: "Successful Search", Payload: *searchResp}
                     handler.responseChan <- baseResponse
                 } else {
-                    fmt.Println("Error in search: ", err)
-                    baseResponse := response.Base{
-                        Success:false,
-                        Status: fmt.Sprintf("Error in search: %s", err),
-                        Payload: nil,
-                    }
-                    handler.responseChan <- baseResponse
+                    handler.handleGenericError("Error in search: %s", err)
                 }
-            } else {
-                baseResponse := response.Base{
-                    Success:false,
-                    Status: fmt.Sprintf("Error in parsing message: %s", error),
-                    Payload: nil,
-                }
-                handler.responseChan <- baseResponse
-	    }        
+            }
         case "BookList":
             fmt.Println("Got a BookList Request")
             var bookList = request.BookList{}
-            error := ParseMessage(message, &bookList)
-            if error == nil {
+            if handler.parse(message, &bookList) {
                 fmt.Println("Making HandleBookListRequest")
                 searchResp, err := handlers.HandleBookList(bookList, handler.dbProxy.GetConnection())
                 if err == nil {
                     baseResponse := response.Base{Success:true, Status: "Successful Book List Request", Payload: *searchResp}
                     handler.responseChan <- baseResponse
                 } else {
-                    fmt.Println("Error in search: ", err)
-                    baseResponse := response.Base{
-                        Success:false,
-                        Status: fmt.Sprintf("Error in search: %s", err),
-                        Payload: nil,
-                    }
-                    handler.responseChan <- baseResponse
+                    handler.handleGenericError("Error in requesting book list: %s", err)
                 }
-            } else {
-                baseResponse := response.Base{
-                    Success:false,
-                    Status: fmt.Sprintf("Error in parsing message: %s", error),
-                    Payload: nil,
+            }
+        case "AddBook":
+            fmt.Println("Got an AddBook Request")
+            var addBook = request.AddBook{}
+            if handler.parse(message, &addBook) {
+                user := handler.dbProxy.GetBookTrackerUser()
+                addResp, err := handlers.HandleAddBook(addBook, handler.dbProxy.GetConnection(), *user)
+                if err == nil {
+                    handler.responseChan <- *addResp
+                } else {
+                    handler.handleGenericError("Error in adding book to list: %s", err)
                 }
-                handler.responseChan <- baseResponse
             }
         }
-
-
-         // TODO ensure session exists before allowing other actions
     }
+}
+
+func (handler *MessageHandler) parse(baseMessage request.Base, intendedType interface{}) bool {
+    error := ParseMessage(baseMessage, intendedType)
+    if error == nil {
+        return true
+    } else {
+        baseResponse := response.Base{
+            Success:false,
+            Status: fmt.Sprintf("Error in parsing message: %s", error),
+            Payload: nil,
+        }
+        handler.responseChan <- baseResponse
+
+        return false
+    }
+}
+
+func (handler *MessageHandler) handleGenericError(message string, err error) {
+    fmt.Println(message + ":", err)
+    baseResponse := response.Base{
+        Success:false,
+        Status: fmt.Sprintf("Error in adding book to list: %s", err),
+        Payload: nil,
+    }
+    handler.responseChan <- baseResponse
 }

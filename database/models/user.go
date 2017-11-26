@@ -10,3 +10,14 @@ type User struct {
     Shelves []Shelf
     Session Session
 }
+
+func (user *User) GetShelf(name string) *Shelf {
+    shelf := Shelf{}
+    for _, s := range user.Shelves {
+       if s.Name == name {
+           shelf = s
+           break
+       }
+    }
+    return &shelf
+}
