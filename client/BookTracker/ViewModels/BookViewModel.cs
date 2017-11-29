@@ -1,4 +1,5 @@
 ﻿using BookTracker.HelperClasses;
+using BookTracker.Messaging.Requests;
 using BookTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -40,12 +41,29 @@ namespace BookTracker.ViewModels
 
         public void Execute(object parameter)
         {
-            Debug.WriteLine("Book::Execute");
+            Debug.WriteLine("BookViewModel::Execute with " + parameter);
+            String shelfName = (String)parameter;
+            addBook(shelfName);
         }
 
         public void Update()
         {
-            Debug.WriteLine("Book::Update");
+            Debug.WriteLine("BookViewModel::Update");
+        }
+
+        private void addBook(String shelfName)
+        {
+            AddBook addBookReq = new AddBook
+            {
+                ShelfName = shelfName,
+                Book = bookModel
+            };
+            Base req = new Base
+            {
+                Action = "AddBook",
+                Payload = addBookReq
+            };
+            ServerProxy.Instance.sendRequest(req);
         }
     }
 }
