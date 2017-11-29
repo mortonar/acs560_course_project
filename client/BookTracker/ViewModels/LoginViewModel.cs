@@ -57,15 +57,16 @@ namespace BookTracker.ViewModels
         public void Create_Account()
         {
             Debug.Write("Create Account with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
-            Login login = new Login
+            CreateAccount createAccount = new CreateAccount
             {
                 UserName = _loginModel.UserName,
-                EncryptedPass = _loginModel.Password
+                Email = " ", // TODO add support for populating email
+                Password = _loginModel.Password
             };
             Base message = new Base
             {
-                Action = "Auth",
-                Payload = login
+                Action = "CreateAccount",
+                Payload = createAccount
             };
             try
             {
