@@ -10,4 +10,5 @@ type Book struct {
 	Description  string
 	ThumbnailURL string
 	ImageURL     string
+	Shelves      []Shelf `gorm:"many2many:shelves_books;"`
 }

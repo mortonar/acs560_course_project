@@ -9,9 +9,15 @@ import (
 
 // TODO error handling
 func HandleAddBook(addReq request.AddBook, db *gorm.DB, user models.User) (*response.Base, error) {
-    shelf := user.GetShelf(addReq.ShelfName)
-    shelf.Books = append(shelf.Books, addReq.Book)
-    db.Save(&shelf)
+    shelf := models.Shelf{}
+    db.First(&shelf, "user_id = ? AND name = ?", user.ID, addReq.ShelfName)
+
+    book := models.Book{}
+    db.FirstOrCreate(&book, addReq.Book)
+
+    db.Model(&shelf).Association("Books").Append(book)
+    db.Update(&shelf)
+
     return &response.Base{
         Success: true,
         Status: "Successfully added book",

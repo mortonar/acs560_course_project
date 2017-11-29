@@ -27,7 +27,7 @@ func (db *DBProxy) GetConnection() *gorm.DB {
 
 func (db *DBProxy) GetBookTrackerUser() *models.User {
     user := models.User{}
-    db.db.Where("name = ?", "booktracker").First(&user)
+    db.db.Where("login = ?", "booktracker").First(&user)
     return &user
 }
 
@@ -55,7 +55,7 @@ func (dbp *DBProxy) createSampleData() {
     }
     dbp.db.FirstOrCreate(&user, user)
 
-    shelves := [3]string{"Read", "Reading", "ToRead"}
+    shelves := [3]string{"Read", "Reading", "To Read"}
     for _, shelfName := range shelves {
         shelf := models.Shelf {
             Name: shelfName,

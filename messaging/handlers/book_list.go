@@ -7,14 +7,13 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/messages/response"
     "errors"
     "fmt"
-    "net/url"
 )
 
 // Handles a Book List request, returning a response containing the book list
 func HandleBookList(searchReq request.BookList, db *gorm.DB) (*response.BookList, error) {
     fmt.Println("Handling book list request...")
     Shelf := models.Shelf{}
-    name := url.QueryEscape(searchReq.Name)
+    name := searchReq.Name
     db.Preload("Books").First(&Shelf, "name = ?", name)
     fmt.Println("Found BookList named " + name)
     
