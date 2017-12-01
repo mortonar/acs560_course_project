@@ -69,7 +69,14 @@ namespace BookTracker.Models
         public void Execute(object parameter)
         {
             Debug.WriteLine("Book model execute(" + this.ToString() + ")");
-            ((App)App.Current).changeViewModel(new BookViewModel(this));
+            if (parameter.Equals("Book"))
+            {
+                ((App)App.Current).changeViewModel(new BookViewModel(this));
+            }
+            else
+            {
+                ((App)App.Current).changeViewModel(new BookViewListsModel(this, (string)parameter));
+            }
         }
 
         public String Listing

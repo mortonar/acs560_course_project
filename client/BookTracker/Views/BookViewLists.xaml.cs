@@ -3,11 +3,11 @@
 namespace BookTracker.Views
 {
     /// <summary>
-    /// Interaction logic for BookView.xaml
+    /// Interaction logic for BookViewLists.xaml
     /// </summary>
-    public partial class BookView : UserControl
+    public partial class BookViewLists : UserControl
     {
-        public BookView()
+        public BookViewLists()
         {
             InitializeComponent();
         }

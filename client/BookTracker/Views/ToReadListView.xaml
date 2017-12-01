@@ -17,7 +17,7 @@
                 <DataTemplate>
                     <TextBlock Text="{Binding Path=Listing}">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="ToRead"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
                 </DataTemplate>

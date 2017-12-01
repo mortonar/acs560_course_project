@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messaging\Requests\RemoveBook.cs" />
     <Compile Include="Messaging\Requests\BookList.cs" />
     <Compile Include="HelperClasses\IPasswordProvider.cs" />
     <Compile Include="HelperClasses\PasswordUtils.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
+    <Compile Include="ViewModels\BookViewListsModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="Views\BookSearchView.xaml.cs">
       <DependentUpon>BookSearchView.xaml</DependentUpon>
@@ -91,6 +93,9 @@
     <Compile Include="ViewModels\BookSearchResultsViewModel.cs" />
     <Compile Include="Views\BookSearchResultsView.xaml.cs">
       <DependentUpon>BookSearchResultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookViewLists.xaml.cs">
+      <DependentUpon>BookViewLists.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
@@ -129,6 +134,10 @@
     <Page Include="Views\BookSearchResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookViewLists.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BookView.xaml">
       <SubType>Designer</SubType>
