@@ -11,16 +11,17 @@
             <ColumnDefinition Width="45*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Path=BookModel.Listing}" FontSize="20" Grid.Row="1" Grid.Column="1"/>
-        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="14" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" />
-        <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="1" Grid.Column="0" />
-        <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Center"/>
-        <Button Command="{Binding ''}" CommandParameter="ToRead" Content="Add to To Read" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
-        <Button Command="{Binding ''}" CommandParameter="RemoveBook" Content="Remove Book" FontSize="10" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="14" TextWrapping="Wrap" Grid.Row="2" Grid.Column="2" />
+        <Image Source="{Binding Path=BookModel.Image}" Width="200" Grid.RowSpan="3" Grid.Column="0" />
+        <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" FontSize="10" Grid.Row="3" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
+        <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="3" Grid.Column="0" Width="100" HorizontalAlignment="Center"/>
+        <Button Command="{Binding ''}" CommandParameter="ToRead" Content="Add to To Read" FontSize="10" Grid.Row="3" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
+        <Button Command="{Binding ''}" CommandParameter="RemoveBook" Content="Remove Book" FontSize="10" Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>
