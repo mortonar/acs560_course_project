@@ -95,6 +95,19 @@ func (handler *MessageHandler) process() {
                     handler.handleGenericError("Error in adding book to list: %s", err)
                 }
             }
+        case "RemoveBook":
+            fmt.Println("Got an RemoveBook Request")
+            var removeBook = request.RemoveBook{}
+            if handler.parse(message, &removeBook) {
+                user := handler.dbProxy.GetBookTrackerUser()
+                
+                removeResp, err := handlers.HandleRemoveBook(removeBook, handler.dbProxy.GetConnection(), *user)
+                if err == nil {
+                    handler.responseChan <- *removeResp
+                } else {
+                    handler.handleGenericError("Error in removing the book from the list: %s", err)
+                }
+            }
         }
     }
 }
