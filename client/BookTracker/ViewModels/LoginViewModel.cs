@@ -57,6 +57,7 @@ namespace BookTracker.ViewModels
                     Debug.WriteLine("Setting token: " + resp.Success + " | " + loginResp.Token);
                     ((App)App.Current).setToken(loginResp.Token);
                     Debug.WriteLine("Logged in? " + ((App)App.Current).isLoggedIn());
+                    ((App)App.Current).changeViewModel(new ReadingListViewModel());
                 }
             }
             catch (Exception e)
