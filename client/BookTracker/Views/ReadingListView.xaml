@@ -12,7 +12,7 @@
         <DataTemplate x:Key="ListItemTemplate">
             <Grid Grid.IsSharedSizeScope="True">
                 <Grid.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="ReadBook" />
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="Reading" />
                 </Grid.InputBindings>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200*"/>
