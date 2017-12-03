@@ -3,32 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BookTracker.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListItemTemplate">
+            <Grid Grid.IsSharedSizeScope="True">
+                <Grid.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="ReadBook" />
+                </Grid.InputBindings>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding Path=Image}" HorizontalAlignment="Center" Width="100" Grid.Row="0" />
+                <TextBlock Text="{Binding Path=Listing}" HorizontalAlignment="Center" Width="150" TextWrapping="Wrap" Grid.Row="1" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Search Results" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" Grid.RowSpan="1" />
-        <ListBox x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Grid.IsSharedSizeScope="True">
-                        <Grid.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="Book" />
-                        </Grid.InputBindings>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200*"/>
-                            <RowDefinition Height="10*"/>
-                        </Grid.RowDefinitions>
-                        <Image Source="{Binding Path=Image}" Width="100" Grid.Row="0" HorizontalAlignment="Center" />
-                        <TextBlock Text="{Binding Path=Listing}" Grid.Row="1" />
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
+        <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" Grid.RowSpan="1" />
+        <ListView ItemTemplate="{StaticResource ListItemTemplate}" x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
+
 </UserControl>
