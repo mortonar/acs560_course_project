@@ -11,14 +11,10 @@ namespace BookTracker.ViewModels
     public class ReadListViewModel : ObservableObject, IPageViewModel
     {
 
-        public ReadListViewModel()
-        {
-            Debug.WriteLine("Getting the To Read Book List.");
-            Update();
-        }
-
         public void Update()
         {
+            Debug.WriteLine("Getting the To Read Book List.");
+
             BookList bookList = new BookList
             {
                 Name = Name

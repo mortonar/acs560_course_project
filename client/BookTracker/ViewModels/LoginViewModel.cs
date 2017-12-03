@@ -1,6 +1,8 @@
 ﻿using BookTracker.HelperClasses;
 using BookTracker.Messaging.Requests;
 using BookTracker.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -32,7 +34,7 @@ namespace BookTracker.ViewModels
 
         public void Login()
         {
-            Debug.Write("Logging in with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
+            Debug.WriteLine("Logging in with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
             Login login = new Login
             {
                 UserName = _loginModel.UserName,
@@ -47,6 +49,15 @@ namespace BookTracker.ViewModels
             {
                 string response = ServerProxy.Instance.sendRequest(message);
                 Debug.WriteLine("RESPONSE: " + response);
+
+                Messaging.Responses.Base resp = JsonConvert.DeserializeObject<Messaging.Responses.Base>(response);
+                if (resp.Success)
+                {
+                    Messaging.Responses.Login loginResp = (resp.Payload as JObject).ToObject<Messaging.Responses.Login>();
+                    Debug.WriteLine("Setting token: " + resp.Success + " | " + loginResp.Token);
+                    ((App)App.Current).setToken(loginResp.Token);
+                    Debug.WriteLine("Logged in? " + ((App)App.Current).isLoggedIn());
+                }
             }
             catch (Exception e)
             {
@@ -70,8 +81,9 @@ namespace BookTracker.ViewModels
             };
             try
             {
-                string response = ServerProxy.Instance.sendRequest(message);
-                Debug.WriteLine("RESPONSE: " + response);
+                string rawResp = ServerProxy.Instance.sendRequest(message);
+                Debug.WriteLine("RESPONSE: " + rawResp + "\n");
+
             }
             catch (Exception e)
             {

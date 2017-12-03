@@ -43,6 +43,11 @@ namespace BookTracker
 
         public string sendRequest(Base message)
         {
+            if (string.IsNullOrEmpty(message.Token))
+            {
+                message.Token = ((App)App.Current).getToken();
+            }
+
             NetworkStream serverStream = clientSocket.GetStream();
 
             string request = JsonConvert.SerializeObject(message);

@@ -27,7 +27,7 @@ namespace BookTracker
             PageViewModels.Add(new ReadListViewModel());
 
             // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
+            CurrentPageViewModel = PageViewModels[1];
         }
 
         #region Properties / Commands

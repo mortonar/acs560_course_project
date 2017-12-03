@@ -78,6 +78,7 @@
     <Compile Include="HelperClasses\PasswordUtils.cs" />
     <Compile Include="Messaging\Requests\AddBook.cs" />
     <Compile Include="Messaging\Requests\CreateAccount.cs" />
+    <Compile Include="Messaging\Responses\Login.cs" />
     <Compile Include="Models\BookSearchModel.cs" />
     <Compile Include="Messaging\Requests\BookSearch.cs" />
     <Compile Include="Messaging\Responses\Base.cs" />

@@ -15,18 +15,13 @@ namespace BookTracker
             get { return "Home"; }
         }
 
-        public HomeViewModel()
-        {
-            Debug.WriteLine("Getting the To Read Book List.");
-            Update();
-        }
-
         public void Update()
         {
+            Debug.WriteLine("Getting the To Read Book List.");
 
             BookList bookList = new BookList
             {
-                Name = Name
+                Name = "To Read"
             };
 
             Base message = new Base

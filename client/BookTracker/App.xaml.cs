@@ -30,6 +30,29 @@ namespace BookTracker
             context.ChangePageCommand.Execute(viewModel);
         }
 
+        public bool isLoggedIn()
+        {
+            return !string.IsNullOrEmpty(getToken());
+        }
+
+        public void setToken(string token)
+        {
+            App.Current.Properties["TOKEN"] = token;
+        }
+
+        public string getToken()
+        {
+            object value = App.Current.Properties["TOKEN"];
+            if (value != null && value is string)
+            {
+                return (string)value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
     }
 
 }
