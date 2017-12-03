@@ -20,7 +20,7 @@
         <Image Source="{Binding Path=BookModel.Image}" Width="100" Grid.Row="1" Grid.Column="0" />
         <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
         <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Center"/>
-        <Button Command="{Binding ''}" CommandParameter="To Read" Content="Add to To Read" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
-        <Button Command="{Binding ''}" CommandParameter="RemoveBook" Content="RemoveBook:" FontSize="10" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
+        <Button Command="{Binding ''}" CommandParameter="ToRead" Content="Add to To Read" FontSize="10" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
+        <Button Command="{Binding ''}" CommandParameter="RemoveBook" Content="Remove Book" FontSize="10" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>
