@@ -15,11 +15,17 @@
         <ListBox x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=Listing}">
-                        <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="Book"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                    <Grid Grid.IsSharedSizeScope="True">
+                        <Grid.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="Book" />
+                        </Grid.InputBindings>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding Path=Image}" Width="100" Grid.Row="0" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=Listing}" Grid.Row="1" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
