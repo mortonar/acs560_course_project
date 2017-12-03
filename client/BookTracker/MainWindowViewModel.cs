@@ -18,16 +18,15 @@ namespace BookTracker
         public MainWindowViewModel()
         {
             // Add available pages
-            PageViewModels.Add(new HomeViewModel());
             // TODO - Make this ViewModel either login or logout, depending on the current status of the session
             PageViewModels.Add(new LoginViewModel());
-            PageViewModels.Add(new BookSearchViewModel());
             PageViewModels.Add(new ToReadListViewModel());
             PageViewModels.Add(new ReadingListViewModel());
             PageViewModels.Add(new ReadListViewModel());
+            PageViewModels.Add(new BookSearchViewModel());
 
             // Set starting page
-            CurrentPageViewModel = PageViewModels[1];
+            CurrentPageViewModel = PageViewModels[0];
         }
 
         #region Properties / Commands
