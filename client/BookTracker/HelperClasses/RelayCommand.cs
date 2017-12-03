@@ -52,6 +52,10 @@ namespace BookTracker.HelperClasses
         [DebuggerStepThrough]
         public bool CanExecute(object parameters)
         {
+            if (!((App)App.Current).isLoggedIn())
+            {
+                return false;
+            }
             return _canExecute == null ? true : _canExecute(parameters);
         }
 
