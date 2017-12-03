@@ -13,3 +13,8 @@ go get github.com/jinzhu/gorm
 go get github.com/satori/go.uuid
 from: $GOPATH/src/github.com/mortonar/acs560_course_project run: bootstrap.sh as root
 
+Client Windows:
+Map local ip address to domain.
+Edit C:\Windows\System32\drivers\etc\hosts adding line below (replacing IP with local IP).
+192.168.1.108 booktracker.com
+
