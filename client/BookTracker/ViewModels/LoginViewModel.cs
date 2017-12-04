@@ -11,7 +11,6 @@ namespace BookTracker.ViewModels
 {
     public class LoginViewModel : ObservableObject, ICommand, IPageViewModel
     {
-
         private LoginModel _loginModel;
 
         public event EventHandler CanExecuteChanged;
@@ -59,9 +58,16 @@ namespace BookTracker.ViewModels
                     Debug.WriteLine("Logged in? " + ((App)App.Current).isLoggedIn());
                     ((App)App.Current).changeViewModel(new ReadingListViewModel());
                 }
+                else
+                {
+                    System.Windows.MessageBox.Show("An account with that username or password could not be found.", "Alert",
+                            System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
             }
             catch (Exception e)
             {
+                System.Windows.MessageBox.Show("Exception: " + e, "Error",
+                        System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 Debug.WriteLine("Exception: " + e);
             }
         }
