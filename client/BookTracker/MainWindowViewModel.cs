@@ -23,14 +23,14 @@ namespace BookTracker
         {
             // Add available pages
             // TODO - Make this ViewModel either login or logout, depending on the current status of the session
-            PageViewModels.Add(new LoginViewModel());
             PageViewModels.Add(new ToReadListViewModel());
             PageViewModels.Add(new ReadingListViewModel());
             PageViewModels.Add(new ReadListViewModel());
             PageViewModels.Add(new BookSearchViewModel());
+            PageViewModels.Add(new LoginViewModel());
 
             // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
+            CurrentPageViewModel = PageViewModels[4];
 
             // add any view models for which we aren't required login to view
             loginExempt.Add(typeof(LoginViewModel));

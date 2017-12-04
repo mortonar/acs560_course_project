@@ -24,10 +24,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Center" Margin="69,5,69,10" FontSize="30" Grid.RowSpan="1" />
+        <Border Grid.Row="0" Background="#E6E6E6">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="1" />
+            </Border.Effect>
+        </Border>
+        <TextBlock Text="{Binding Name}" FontFamily="Arial" Foreground="#FA4023" HorizontalAlignment="Center" Margin="70,15,69,10" FontSize="50" Grid.RowSpan="1" />
         <ListView ItemTemplate="{StaticResource ListItemTemplate}" x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2" >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

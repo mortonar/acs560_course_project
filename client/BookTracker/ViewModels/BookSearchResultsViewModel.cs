@@ -8,7 +8,7 @@ namespace BookTracker.ViewModels
     {
         public string Name
         {
-            get { return "BookSearchResults"; }
+            get { return "Book Search Results"; }
         }
 
         private BookListModel _searchResults;
