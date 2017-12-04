@@ -7,6 +7,7 @@ import (
     "github.com/mortonar/acs560_course_project/messaging/handlers"
     "github.com/mortonar/acs560_course_project/database"
     "github.com/mortonar/acs560_course_project/database/models"
+    "errors"
 )
 
 type MessageHandler struct {
@@ -29,6 +30,18 @@ func (handler *MessageHandler) Start() {
 func (handler *MessageHandler) Stop() {
 }
 
+
+var loginExemptActions = []string{"CreateAccount", "Auth"}
+
+func actionRequiresLogin(action string) bool {
+    for _, a := range loginExemptActions {
+        if a == action {
+            return false
+        }
+    }
+    return true
+}
+
 func (handler *MessageHandler) process() {
     empty := request.Base{}
     for {
@@ -38,6 +51,13 @@ func (handler *MessageHandler) process() {
             fmt.Println("empty message! stopping messagehandler!")
             break
         }
+
+        if actionRequiresLogin(message.Action) && handler.session == nil {
+            reason := "User must be logged in to perform " + message.Action
+            handler.handleGenericError(reason, errors.New(reason))
+            continue
+        }
+
         switch message.Action {
         case "CreateAccount":
             fmt.Println("Creating account...")
@@ -58,7 +78,6 @@ func (handler *MessageHandler) process() {
                     handler.handleGenericError("Login error", err)
                 }
             }
-        // TODO ensure session exists before processing actions
         case "BookSearch":
             var bookSearch = request.BookSearch{}
             if handler.parse(message, &bookSearch) {
@@ -75,7 +94,7 @@ func (handler *MessageHandler) process() {
             var bookList = request.BookList{}
             if handler.parse(message, &bookList) {
                 fmt.Println("Making HandleBookListRequest")
-                searchResp, err := handlers.HandleBookList(bookList, handler.dbProxy.GetConnection())
+                searchResp, err := handlers.HandleBookList(bookList, handler.dbProxy.GetConnection(), handler.session.UserID)
                 if err == nil {
                     baseResponse := response.Base{Success:true, Status: "Successful Book List Request", Payload: *searchResp}
                     handler.responseChan <- baseResponse
@@ -87,8 +106,7 @@ func (handler *MessageHandler) process() {
             fmt.Println("Got an AddBook Request")
             var addBook = request.AddBook{}
             if handler.parse(message, &addBook) {
-                user := handler.dbProxy.GetBookTrackerUser()
-                addResp, err := handlers.HandleAddBook(addBook, handler.dbProxy.GetConnection(), *user)
+                addResp, err := handlers.HandleAddBook(addBook, handler.dbProxy.GetConnection(), handler.session.UserID)
                 if err == nil {
                     handler.responseChan <- *addResp
                 } else {
@@ -99,9 +117,7 @@ func (handler *MessageHandler) process() {
             fmt.Println("Got an RemoveBook Request")
             var removeBook = request.RemoveBook{}
             if handler.parse(message, &removeBook) {
-                user := handler.dbProxy.GetBookTrackerUser()
-                
-                removeResp, err := handlers.HandleRemoveBook(removeBook, handler.dbProxy.GetConnection(), *user)
+                removeResp, err := handlers.HandleRemoveBook(removeBook, handler.dbProxy.GetConnection(), handler.session.UserID)
                 if err == nil {
                     handler.responseChan <- *removeResp
                 } else {

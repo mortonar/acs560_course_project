@@ -25,12 +25,6 @@ func (db *DBProxy) GetConnection() *gorm.DB {
     return db.db
 }
 
-func (db *DBProxy) GetBookTrackerUser() *models.User {
-    user := models.User{}
-    db.db.Where("login = ?", "booktracker").First(&user)
-    return &user
-}
-
 func (dbp *DBProxy) migrate() {
     dbp.db.AutoMigrate(&models.Book{})
     dbp.db.AutoMigrate(&models.Reading{})
@@ -55,12 +49,5 @@ func (dbp *DBProxy) createSampleData() {
     }
     dbp.db.FirstOrCreate(&user, user)
 
-    shelves := [3]string{"Read", "Reading", "To Read"}
-    for _, shelfName := range shelves {
-        shelf := models.Shelf {
-            Name: shelfName,
-            UserId: user.ID,
-        }
-        dbp.db.FirstOrCreate(&shelf, shelf)
-    }
+    models.CreateShelvesForUser(dbp.db, user.ID)
 }

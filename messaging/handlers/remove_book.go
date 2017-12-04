@@ -9,15 +9,15 @@ import (
 )
 
 // TODO error handling
-func HandleRemoveBook(removeReq request.RemoveBook, db *gorm.DB, user models.User) (*response.Base, error) {
+func HandleRemoveBook(removeReq request.RemoveBook, db *gorm.DB, userId uint) (*response.Base, error) {
     fmt.Println("Removing the Book " + removeReq.Book.Title + " from the list " + removeReq.ShelfName)
     shelf := models.Shelf{}
-    db.First(&shelf, "user_id = ? AND name = ?", user.ID, removeReq.ShelfName)
+    db.First(&shelf, "user_id = ? AND name = ?", userId, removeReq.ShelfName)
 
     book := models.Book{}
     db.First(&book, removeReq.Book)
 
-    db.Exec("DELETE FROM shelves_books  WHERE (shelf_id = ?) AND (shelf_name = ?) AND (shelf_user_id = ?) AND (book_id IN (?))", shelf.ID, shelf.Name, user.ID, book.ID)
+    db.Exec("DELETE FROM shelves_books  WHERE (shelf_id = ?) AND (shelf_name = ?) AND (shelf_user_id = ?) AND (book_id IN (?))", shelf.ID, shelf.Name, userId, book.ID)
 
     return &response.Base{
         Success: true,

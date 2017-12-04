@@ -14,6 +14,7 @@ func HandleCreateAccount(request request.CreateAccount, connection *gorm.DB) {
     user := models.User{Login: request.UserName, Email: request.Email, Password: request.Password}
 
     connection.Create(&user)
+    models.CreateShelvesForUser(connection, user.ID)
 }
 
 func HandleLogin(request request.AuthRequest, db *gorm.DB) (*models.Session, error) {
@@ -21,7 +22,7 @@ func HandleLogin(request request.AuthRequest, db *gorm.DB) (*models.Session, err
     user := models.User{}
     fmt.Println("Looking for user : ", request.UserName, " | ", request.EncryptedPass)
     db.Where("login = ? AND password = ?", request.UserName, request.EncryptedPass).First(&user)
-    fmt.Println("Found user : ", user.Login, " | ", user.Password)
+    fmt.Println("Found user : ", user.Login, " | ", user.Password, " | ", user.ID)
     if &user != nil {
         token := uuid.NewV4().String()
         fmt.Println("Generating token for user : ", token)

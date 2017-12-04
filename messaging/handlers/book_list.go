@@ -10,11 +10,11 @@ import (
 )
 
 // Handles a Book List request, returning a response containing the book list
-func HandleBookList(searchReq request.BookList, db *gorm.DB) (*response.BookList, error) {
+func HandleBookList(searchReq request.BookList, db *gorm.DB, userId uint) (*response.BookList, error) {
     fmt.Println("Handling book list request...")
     Shelf := models.Shelf{}
     name := searchReq.Name
-    db.Preload("Books").First(&Shelf, "name = ?", name)
+    db.Preload("Books").First(&Shelf, "name = ? AND user_id = ?", name, userId)
     fmt.Println("Found BookList named " + name)
     
     if &Shelf != nil {
