@@ -23,7 +23,7 @@ func HandleLogin(request request.AuthRequest, db *gorm.DB) (*models.Session, err
     fmt.Println("Looking for user : ", request.UserName, " | ", request.EncryptedPass)
     db.Where("login = ? AND password = ?", request.UserName, request.EncryptedPass).First(&user)
     fmt.Println("Found user : ", user.Login, " | ", user.Password, " | ", user.ID)
-    if &user != nil {
+    if user.ID != 0 {
         token := uuid.NewV4().String()
         fmt.Println("Generating token for user : ", token)
         session := models.Session{UserID: user.ID, Token: token}
