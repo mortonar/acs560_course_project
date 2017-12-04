@@ -27,7 +27,6 @@
             <RowDefinition Height="15*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-<<<<<<< HEAD
         <Border Grid.Row="0" Background="#E6E6E6">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="1" />

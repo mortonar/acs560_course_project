@@ -78,9 +78,12 @@ namespace BookTracker.ViewModels
 
         public void Execute(object parameter)
         {
-            if (parameter.GetType() == typeof(String) && parameter.Equals("Create")) {
+            if (parameter.GetType() == typeof(String) && parameter.Equals("Create"))
+            {
                 Create_Account();
-            } else {
+            }
+            else
+            {
                 IPasswordProvider passwordProv = parameter as IPasswordProvider;
                 LoginModel.Password = PasswordUtils.ConvertToUnsecureString(passwordProv.Password);
                 Login();
