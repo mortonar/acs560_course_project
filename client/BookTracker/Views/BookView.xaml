@@ -6,6 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/BookTracker;component/Resources/grey-paper-texture.jpg" TileMode="Tile"
+            Viewport="400,200,400,200" ViewportUnits="Absolute" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="20*"/>
@@ -17,11 +21,12 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Path=BookModel.Listing}" FontFamily="Arial" Foreground="#FA4023" FontSize="20" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3" />
-        <TextBlock Text="{Binding Path=BookModel.Description}" FontSize="13" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" />
-        <Image Source="{Binding Path=BookModel.Image}" Width="200" Grid.RowSpan="3" Grid.Column="2" HorizontalAlignment="Right"/>
-        <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" FontSize="10" Grid.Row="0" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
-        <Button Command="{Binding ''}" CommandParameter="To Read" Content="Add to To Read" FontSize="10" Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Right"/>
+        <TextBlock Text="{Binding Path=BookModel.Listing}" Margin="20,30,0,0" FontFamily="Arial" Foreground="#FA4023" FontSize="30"
+                   HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="3" />
+        <TextBlock Text="{Binding Path=BookModel.Description}" Margin="20,0,0,0" FontFamily="Arial" FontSize="14" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" />
+        <Image Source="{Binding Path=BookModel.Image}" Margin="20,0,0,0" Width="200" Grid.RowSpan="3" Grid.Column="2" HorizontalAlignment="Right"/>
+        <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" Margin="20,0,0,0" FontSize="10" Grid.Row="1" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
+        <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
+        <Button Command="{Binding ''}" CommandParameter="To Read" Content="Add to To Read" FontSize="10" Grid.Row="1" Grid.Column="2" Width="100" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

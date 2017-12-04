@@ -69,10 +69,10 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="800*"/>
-                <RowDefinition Height="125*"/>
             </Grid.RowDefinitions>
-            <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="0"/>
-            <Image Source="/BookTracker;component/Resources/bookList.jpg" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1"/>
+            <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="0" />
+           
         </Grid>
     </DockPanel>
+    
 </Window>

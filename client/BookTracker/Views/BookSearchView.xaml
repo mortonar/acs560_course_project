@@ -5,19 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/BookTracker;component/Resources/grey-paper-texture.jpg" TileMode="Tile"
+            Viewport="400,200,400,200" ViewportUnits="Absolute" />
+        </Grid.Background>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="12*"/>
-            <RowDefinition Height="12*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Book Search" FontWeight="Bold" FontFamily="Arial" Foreground="#FA4023" HorizontalAlignment="Center" Margin="0,15,0,0" FontSize="30" Grid.Column="1" />
+        <Border Grid.Row="0" Background="#413125">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="1" />
+            </Border.Effect>
+        </Border>
+        <TextBlock Text="Book Search" FontFamily="Arial" Foreground="White" HorizontalAlignment="Center" Margin="0,25,0,0" FontSize="50" Grid.Column="1" />
         <TextBlock Text="Author" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="2" Grid.Column="1"/>
         <TextBox x:Name="txtAuthor" Text="{Binding BookSearchModel.Author}" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Width="150"/>
         <TextBlock Text="Title" HorizontalAlignment="Center" Margin="10,20,155,0" FontSize="15" Width="72" Grid.Row="1" Grid.Column="1"/>
         <TextBox x:Name="txtTitle" Text="{Binding BookSearchModel.Title}" Margin="100,0,20,0" MinWidth="100" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="150" />
         <Button Command="{Binding ''}" Content="Book Search" Margin="10,5,10,5" Width="150" Grid.Row="3" Grid.Column="1"/>
+        <Image Source="/BookTracker;component/Resources/bookWall.jpg" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="5" Stretch="UniformToFill"/>
     </Grid>
 </UserControl>
