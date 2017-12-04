@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Unloaded="Window_Unloaded" MinWidth="1500" MinHeight="800"
+        Unloaded="Window_Unloaded" Width="1500" MinHeight="800"
         Title="Book Tracker" SizeToContent="WidthAndHeight">
 
     <Window.Resources>
@@ -24,6 +24,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:LoginViewModel}">
             <local:LoginView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:CreateAccountViewModel}">
+            <local:CreateAccountView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:BookSearchViewModel}">
             <local:BookSearchView />

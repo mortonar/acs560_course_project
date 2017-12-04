@@ -86,8 +86,10 @@
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="HelperClasses\ObservableObject.cs" />
+    <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="ViewModels\BookViewListsModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="Views\BookSearchView.xaml.cs">
       <DependentUpon>BookSearchView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +102,9 @@
     </Compile>
     <Compile Include="Views\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateAccountView.xaml.cs">
+      <DependentUpon>CreateAccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToReadListView.xaml.cs">
       <DependentUpon>ToReadListView.xaml</DependentUpon>
@@ -143,6 +148,10 @@
     <Page Include="Views\BookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateAccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ToReadListView.xaml">
       <Generator>MSBuild:Compile</Generator>

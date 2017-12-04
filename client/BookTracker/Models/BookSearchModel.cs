@@ -9,8 +9,8 @@ namespace BookTracker.Models
 
         public BookSearchModel()
         {
-            _author = "George Orwell";
-            _title = "1984";
+            _author = "";
+            _title = "";
         }
 
         public String Author

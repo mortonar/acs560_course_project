@@ -2,14 +2,16 @@
 
 namespace BookTracker.Models
 {
-    public class LoginModel
+    public class CreateAccountModel
     {
         private String _userName;
+        private String _email;
         private String _password;
 
-        public LoginModel()
+        public CreateAccountModel()
         {
             _userName = "";
+            _email = "";
             _password = "";
         }
 
@@ -17,6 +19,12 @@ namespace BookTracker.Models
         {
             get { return _userName; }
             set { _userName = value; }
+        }
+
+        public String Email
+        {
+            get { return _email; }
+            set { _email = value; }
         }
 
         public String Password

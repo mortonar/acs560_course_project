@@ -34,6 +34,7 @@ namespace BookTracker
 
             // add any view models for which we aren't required login to view
             loginExempt.Add(typeof(LoginViewModel));
+            loginExempt.Add(typeof(CreateAccountViewModel));
         }
 
         #region Properties / Commands

@@ -68,30 +68,8 @@ namespace BookTracker.ViewModels
 
         public void Create_Account()
         {
-            Debug.Write("Create Account with credentials: " + _loginModel.UserName + " and " + LoginModel.Password);
-            CreateAccount createAccount = new CreateAccount
-            {
-                UserName = _loginModel.UserName,
-                Email = " ", // TODO add support for populating email
-                Password = _loginModel.Password
-            };
-            Base message = new Base
-            {
-                Action = "CreateAccount",
-                Payload = createAccount
-            };
-            try
-            {
-                string rawResp = ServerProxy.Instance.sendRequest(message);
-                Debug.WriteLine("RESPONSE: " + rawResp + "\n");
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Exception: " + e);
-            }
+            ((App)App.Current).changeViewModel(new CreateAccountViewModel());
         }
-
 
         public bool CanExecute(object parameter)
         {
