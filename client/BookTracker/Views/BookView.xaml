@@ -22,6 +22,6 @@
         <Image Source="{Binding Path=BookModel.Image}" Width="200" Grid.RowSpan="3" Grid.Column="2" HorizontalAlignment="Right"/>
         <Button Command="{Binding ''}" CommandParameter="Read" Content="Add to Read" FontSize="10" Grid.Row="0" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
         <Button Command="{Binding ''}" CommandParameter="Reading" Content="Add to Reading" FontSize="10" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Center"/>
-        <Button Command="{Binding ''}" CommandParameter="ToRead" Content="Add to To Read" FontSize="10" Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Right"/>
+        <Button Command="{Binding ''}" CommandParameter="To Read" Content="Add to To Read" FontSize="10" Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>
