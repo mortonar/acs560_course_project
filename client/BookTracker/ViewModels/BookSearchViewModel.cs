@@ -21,7 +21,7 @@ namespace BookTracker.ViewModels
 
         public string Name
         {
-            get { return "Search Book"; }
+            get { return "Search Books"; }
         }
 
         public event EventHandler CanExecuteChanged;

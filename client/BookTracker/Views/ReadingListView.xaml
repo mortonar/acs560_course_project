@@ -36,7 +36,7 @@
         <ListView ItemTemplate="{StaticResource ListItemTemplate}" x:Name="listboxFolder1" Grid.Row="1" BorderThickness="0" ItemsSource="{Binding BookListModel.Booklist}" Grid.RowSpan="2" >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="5" />
+                    <UniformGrid Columns="3" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
